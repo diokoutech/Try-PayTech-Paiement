@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <button class="btn btn-success" onclick="payNew(10000,8712,'Paiement par paytech')">
+        Payer avec paytech
+    </button>   
+</div>
+<script>
+//alert("Test");
+
+
+function payNew(montantTotal, numeroDossier, denomination) 
+{
+    (new PayTech({
+        montantTotal: montantTotal,
+        numeroDossier: numeroDossier,
+        denomination: denomination
+    })).withOption({
+        requestTokenUrl: '/payment',
+        method: 'POST',
+        prensentationMode: PayTech.OPEN_IN_POPUP,
+        willGetToken: function () {
+            console.log("willGetToken");
+        },
+        didGetToken: function (token, redirectUrl) {
+            console.log(token,"didGetToken");
+        },
+        didReceiveError: function (error) {
+            console.log(error,"didReceiveError");
+        },
+        didReceiveNonSuccessResponse: function (jsonResponse) {
+            console.log(jsonResponse,"didReceiveNonSuccessResponse");
+        }
+    }).send();
+}
+
+</script> 
