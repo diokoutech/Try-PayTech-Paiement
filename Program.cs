@@ -1,11 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore;
+using TestPayTech.Database;
 using TestPayTech.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;    
 // Add services to the container.
+services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=Database/app.db"));
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

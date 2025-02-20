@@ -3,20 +3,18 @@
 }
 
 <div class="text-center">
-    <button class="btn btn-success" onclick="payNew(10000,8712,'Paiement par paytech')">
+    <button class="btn m-5 btn-success" onclick="payNew(10000,8712,'Paiement par paytech')">
         Payer avec paytech
     </button>   
 </div>
 <script>
-//alert("Test");
-
 
 function payNew(montantTotal, numeroDossier, denomination) 
 {
     (new PayTech({
-        montantTotal: montantTotal,
-        numeroDossier: numeroDossier,
-        denomination: denomination
+        MontantTotal: montantTotal,
+        Reference: numeroDossier,
+        NomPayment: denomination
     })).withOption({
         requestTokenUrl: '/payment',
         method: 'POST',
