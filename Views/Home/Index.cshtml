@@ -3,11 +3,53 @@
 }
 
 <div class="text-center">
-    <button class="btn m-5 btn-success" onclick="payNew(10000,8712,'Paiement par paytech')">
+    @* <button class="btn m-5 btn-success" onclick="payNew(10000,8712,'Paiement par paytech')"> *@
+    @* </button> *@
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Payer avec paytech
-    </button>   
+    </button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Création commande</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <label>Reference</label>
+                    <input type="text" class="form-control" placeholder="Reference" value="@Guid.NewGuid()" readonly="readonly"  id="Reference"   name="Reference" required="required"/>
+                </p>
+                <p>
+                    <label>Nom Produit</label>
+                    <input type="text" class="form-control" name="nomProduit" value="Produit de test"  id="nomProduit"  placeholder="Nom produit" required="required"/>
+                </p>
+                <p>
+                    <label>Nom Produit</label>
+                    <input type="text" class="form-control" name="montantTotal" value="12000"  id="montantTotal"  placeholder="Nom produit" required="required"/>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" id="Payer"  class="btn btn-primary" data-bs-dismiss="modal" >Payer</button>
+            </div>
+        </div>
+        </form>
+    </div>
 </div>
 <script>
+ let Reference = document.getElementById("Reference");
+ let nomProduit = document.getElementById("nomProduit");
+ let montantTotal = document.getElementById("montantTotal");
+
+ document.getElementById("Payer").addEventListener("click",function(){
+    payNew(montantTotal.value,Reference.value,nomProduit.value);
+ });
+
+    
 
 function payNew(montantTotal, numeroDossier, denomination) 
 {
