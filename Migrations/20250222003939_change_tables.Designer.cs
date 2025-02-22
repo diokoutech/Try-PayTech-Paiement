@@ -11,8 +11,8 @@ using TestPayTech.Database;
 namespace TestPayTech.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250219113958_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250222003939_change_tables")]
+    partial class change_tables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,34 +27,43 @@ namespace TestPayTech.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Currency")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MethodePaiement")
+                    b.Property<DateTime?>("DateModificationWebhook")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("IdDossier")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("MontantTotal")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("MethodePaiement")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("MontantTotal")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NomProduitPaiement")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Reference")
-                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StatutPaiement")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TelephoneClient")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.HasIndex("IdDossier")
+                        .IsUnique();
+
+                    b.ToTable("Paiements");
                 });
 #pragma warning restore 612, 618
         }

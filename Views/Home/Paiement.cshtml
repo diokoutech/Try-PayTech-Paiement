@@ -1,0 +1,35 @@
+﻿<div class="container">
+    <h3>Liste des paiements</h3>
+    <table class="table-borderless table table-hover">
+        <thead>
+        <th>Id</th>
+        <th>numero Dossier </th>
+        <th>Nom paiement</th>
+        <th>Montant Total</th>
+        <th>Methode paiement</th>
+        <th>Reference</th>
+        <th>Date création</th>
+        <th>Statut Paiement</th>
+        <th>Téléphone client</th>
+        <th>Devise</th>
+        </thead>
+        <tbody>
+                @foreach (var paiement in Model)
+                {
+            <tr>
+
+                    <td>@paiement.Id</td>
+                    <td>@paiement.IdDossier</td>
+                    <td>@paiement.NomProduitPaiement</td>
+                    <td>@paiement.MontantTotal</td>
+                    <td>@paiement.MethodePaiement</td>
+                    <td>@paiement.Reference</td>
+                    <td>@paiement.DateCreation</td>
+                    <td>@paiement.StatutPaiement</td>
+                    <td>@paiement.TelephoneClient</td>
+                    <td>@paiement.Currency</td>
+            </tr>
+                }
+        </tbody>
+    </table>
+</div>

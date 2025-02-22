@@ -24,14 +24,19 @@ namespace TestPayTech.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Currency")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateCreation")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MethodePaiement")
+                    b.Property<DateTime?>("DateModificationWebhook")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("IdDossier")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MethodePaiement")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("MontantTotal")
@@ -42,14 +47,18 @@ namespace TestPayTech.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Reference")
-                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StatutPaiement")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TelephoneClient")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdDossier")
+                        .IsUnique();
 
                     b.ToTable("Paiements");
                 });
