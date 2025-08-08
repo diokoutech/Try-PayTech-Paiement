@@ -51,10 +51,12 @@ public class HomeController(AppDbContext context, ILogger<HomeController> logger
                 { "item_price", payment.MontantTotal.ToString() },
                 { "currency", currency  },
                 { "ref_command", newReference },
+                { "custom_field", "123" },
                 { "env", env },
                 { "success_url", string.Format("{0}{1}/{2}", baseUrlApp, successUrl,payment.Reference) },
                 { "ipn_url", baseUrlApp + ipnUrl },
                 { "cancel_url", string.Format("{0}{1}/{2}", baseUrlApp, cancelUrl,payment.Reference)}
+                
             };
             var content = new FormUrlEncodedContent(datas);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
